@@ -4,6 +4,6 @@ GUI_STRINGS = {
     'MESSAGE_LABEL': 'Messages',
     'CHALLENGE_BUTTON': 'Challenge',
     'NEW_GAME_BUTTON': 'New Game',
-    'PLAY_LETTER_BUTTON': 'Play Letter',
+    'PLAY_LETTER_BUTTON': 'Play',
     'QUIT_BUTTON': 'Quit'
 }

@@ -3,7 +3,7 @@ try:
 except ImportError:
     import Tkinter as tk
 
-from gui import Gui
+from src.gui import Gui
 
 from src.app_model import AppModel
 
