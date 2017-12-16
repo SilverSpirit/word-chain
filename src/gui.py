@@ -1,5 +1,5 @@
-from src.app_utils import APP_TITLE
-from src.app_utils import GUI_STRINGS
+from app_utils import APP_TITLE
+from app_utils import GUI_STRINGS
 try:
     import tkinter as tk
 except ImportError:

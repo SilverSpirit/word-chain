@@ -3,9 +3,9 @@ try:
 except ImportError:
     import Tkinter as tk
 
-from src.gui import Gui
+from gui import Gui
 
-from src.app_model import AppModel
+from app_model import AppModel
 
 
 class AppController:
