@@ -1,11 +1,30 @@
+# © 1995-2014 by Fredrik Lundh
+# By obtaining, using, and/or copying this software and/or its associated
+# documentation, you agree that you have read, understood, and will comply
+# with the following terms and conditions: Permission to use, copy, modify,
+# and distribute this software and its associated documentation for any
+# purpose and without fee is hereby granted, provided that the above copyright
+# notice appears in all copies, and that both that copyright notice and this
+# permission notice appear in supporting documentation, and that the name of
+#  Secret Labs AB or the author not be used in advertising or publicity
+# pertaining to distribution of the software without specific, written
+# prior permission. SECRET LABS AB AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL SECRET LABS AB OR THE
+# AUTHOR BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES
+# OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+# WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+# ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
 try:
     import tkinter as tk
 except ImportError:
     import Tkinter as tk
 
+
 class Dialog(tk.Toplevel):
 
-    def __init__(self, parent, title = None):
+    def __init__(self, parent, title=None):
 
         tk.Toplevel.__init__(self, parent)
         tk.Toplevel.resizable(self, False, False)
@@ -30,10 +49,10 @@ class Dialog(tk.Toplevel):
         if not self.initial_focus:
             self.initial_focus = self
 
-        self.protocol("WM_DELETE_WINDOW", self.cancel)
+        self.protocol('WM_DELETE_WINDOW', self.cancel)
 
-        self.geometry("+%d+%d" % (parent.winfo_rootx()+50,
-                                  parent.winfo_rooty()+50))
+        self.geometry('+%d+%d' % (parent.winfo_rootx() + 50,
+                                  parent.winfo_rooty() + 50))
 
         self.initial_focus.focus_set()
 
@@ -54,13 +73,14 @@ class Dialog(tk.Toplevel):
 
         box = tk.Frame(self)
 
-        w = tk.Button(box, text="OK", width=10, command=self.ok, default=tk.ACTIVE)
+        w = tk.Button(box, text='OK', width=10, command=self.ok,
+                      default=tk.ACTIVE)
         w.pack(side=tk.LEFT, padx=5, pady=5)
-        w = tk.Button(box, text="Cancel", width=10, command=self.cancel)
+        w = tk.Button(box, text='Cancel', width=10, command=self.cancel)
         w.pack(side=tk.LEFT, padx=5, pady=5)
 
-        self.bind("<Return>", self.ok)
-        self.bind("<Escape>", self.cancel)
+        self.bind('<Return>', self.ok)
+        self.bind('<Escape>', self.cancel)
 
         box.pack()
 
@@ -70,7 +90,7 @@ class Dialog(tk.Toplevel):
     def ok(self, event=None):
 
         if not self.validate():
-            self.initial_focus.focus_set() # put focus back
+            self.initial_focus.focus_set()  # put focus back
             return
 
         self.withdraw()
@@ -78,7 +98,7 @@ class Dialog(tk.Toplevel):
 
         self.apply()
 
-        #self.cancel()
+        # self.cancel()
 
     def cancel(self, event=None):
 
@@ -90,7 +110,7 @@ class Dialog(tk.Toplevel):
     # command hooks
 
     def validate(self):
-        return 1 # override
+        return 1  # override
 
     def apply(self):
-        pass # override
+        pass  # override

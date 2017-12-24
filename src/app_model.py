@@ -1,13 +1,16 @@
 class AppModel:
     def __init__(self, controller):
         self.controller = controller
+        self.word = ''
 
-    def gameloop(self, p_choice):
-        if p_choice == 0: # Human
+    def first_turn(self, p_choice):
+        if p_choice == 0:  # Human
             pass
-        else: # Computer
+        else:  # Computer
             pass
 
+    def create_dict(self):
+        pass
 
-    def play_next(self):
-        return 'C'
+    def update_dict(self, letter):
+        pass

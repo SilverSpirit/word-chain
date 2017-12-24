@@ -26,11 +26,10 @@ class Gui:
         self.new_game_button = None
         self.quit_button = None
 
-
     def setup(self):
         self.root.wm_title(APP_TITLE)
         self.root.resizable(False, False)
-        self.header_label = tk.Label(text=APP_TITLE)
+        self.header_label = tk.Label(text=GUI_STRINGS['WORD_LABEL'])
         self.header_label.grid(sticky=tk.W)
         self.word_entry = tk.Entry(font="Helvetica 18 bold",
                                    state='disabled', width=35)
@@ -48,8 +47,15 @@ class Gui:
                                           GUI_STRINGS['CHALLENGE_BUTTON'])
         self.challenge_button.grid(sticky=tk.EW, row=4, column=2, pady=2)
 
-        self.controller.handle_start(self.choice)
+    def disable_input(self):
+        self.letter_entry.config(state='disabled')
+        self.challenge_button.config(state='disabled')
+        self.play_letter_button.config(state='disabled')
 
+    def enable_input(self):
+        self.letter_entry.config(state='normal')
+        self.challenge_button.config(state='normal')
+        self.play_letter_button.config(state='normal')
 
         # self.new_game_button = tk.Button(text=
         #                                     GUI_STRINGS['NEW_GAME_BUTTON'],
@@ -73,11 +79,14 @@ class PlayerDialog(dialog.Dialog):
 
     def body(self, master):
         self.choice.set(2)
-        self.human_check = tk.Checkbutton(master, text='Human', variable=self.choice, onvalue=0)
+        self.human_check = tk.Checkbutton(master, text='Human',
+                                          variable=self.choice, onvalue=0)
         self.human_check.grid(sticky=tk.W)
-        self.computer_check = tk.Checkbutton(master, text='Computer', variable=self.choice, onvalue=1)
+        self.computer_check = tk.Checkbutton(master, text='Computer',
+                                             variable=self.choice, onvalue=1)
         self.computer_check.grid(sticky=tk.W)
-        self.random_check = tk.Checkbutton(master, text='Random', variable=self.choice, onvalue=2)
+        self.random_check = tk.Checkbutton(master, text='Random',
+                                           variable=self.choice, onvalue=2)
         self.random_check.grid(sticky=tk.W)
 
     def apply(self):
@@ -88,4 +97,3 @@ class PlayerDialog(dialog.Dialog):
     def cancel(self, event=None):
         self.root.destroy()
         self.game_gui.root.destroy()
-
