@@ -1,2 +1,5 @@
 .idea/
 src/__pycache__/
+scrabble_dictionary.txt
+words_alpha.txt
+words_scratch.py

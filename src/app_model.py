@@ -8,9 +8,3 @@ class AppModel:
             pass
         else:  # Computer
             pass
-
-    def create_dict(self):
-        pass
-
-    def update_dict(self, letter):
-        pass

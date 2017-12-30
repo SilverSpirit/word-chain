@@ -1,3 +1,5 @@
+import pickle
+
 APP_TITLE = 'Word Chain'
 
 GUI_STRINGS = {
@@ -8,3 +10,6 @@ GUI_STRINGS = {
     'PLAY_LETTER_BUTTON': 'Play',
     'QUIT_BUTTON': 'Quit'
 }
+
+with open('../res/word_list.pkl', 'rb') as f:
+    WORD_LIST = pickle.load(f)

@@ -14,6 +14,9 @@ class Gui:
         self.controller = controller
         self.root = root
         self.choice = None
+        img = tk.PhotoImage(file='../res/logo.gif')
+        self.root.tk.call('wm', 'iconphoto', self.root._w, img)
+
         PlayerDialog(self.dialog_frame, self)
 
         self.header_label = None
