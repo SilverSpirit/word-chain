@@ -21,6 +21,8 @@ try:
 except ImportError:
     import Tkinter as tk
 
+from app_utils import ICON
+
 
 class Dialog(tk.Toplevel):
 
@@ -35,6 +37,9 @@ class Dialog(tk.Toplevel):
 
         self.parent = parent
         self.parent.winfo_toplevel().title('')
+
+        img = tk.PhotoImage(data=ICON)
+        self.tk.call('wm', 'iconphoto', self._w, img)
 
         self.result = None
 

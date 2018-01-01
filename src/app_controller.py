@@ -13,6 +13,7 @@ class AppController:
         self.root = tk.Tk()
         self.model = AppModel(self)
         self.ui = Gui(self, self.root)
+        self.play_again = False
         if self.ui.choice != None:
             self.model.first_turn(self.ui.choice)
 

@@ -1,11 +1,15 @@
 from app_utils import APP_TITLE
 from app_utils import GUI_STRINGS
+from app_utils import ICON
+
 import dialog
 
 try:
     import tkinter as tk
+    from tkinter import messagebox
 except ImportError:
     import Tkinter as tk
+    import tkMessageBox as messagebox
 
 
 class Gui:
@@ -14,10 +18,9 @@ class Gui:
         self.controller = controller
         self.root = root
         self.choice = None
-        img = tk.PhotoImage(file='../res/logo.gif')
+        root.protocol("WM_DELETE_WINDOW", self.on_closing)
+        img = tk.PhotoImage(data=ICON)
         self.root.tk.call('wm', 'iconphoto', self.root._w, img)
-
-        PlayerDialog(self.dialog_frame, self)
 
         self.header_label = None
         self.word_entry = None
@@ -28,6 +31,12 @@ class Gui:
         self.challenge_button = None
         self.new_game_button = None
         self.quit_button = None
+
+        PlayerDialog(self.dialog_frame, self)
+
+    def on_closing(self):
+        self.controller.play_again = messagebox.askyesno('Play again?')
+        self.root.destroy()
 
     def setup(self):
         self.root.wm_title(APP_TITLE)
