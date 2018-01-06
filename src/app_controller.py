@@ -7,6 +7,7 @@ from gui import Gui
 
 from app_model import AppModel
 from app_utils import GAME_STATES
+from app_utils import SUB_LIST
 
 
 class AppController:
@@ -33,7 +34,6 @@ class AppController:
         self.ui.word_entry.insert(0, word)
         self.ui.word_entry.config(state='disabled')
 
-
     def on_play_clicked(self):
         if self.model.game_state == GAME_STATES['HUMAN_PLAY']:
             move = self.ui.letter_entry.get()
@@ -47,7 +47,7 @@ class AppController:
                 if self.model.word in self.model.word_list:
                     self.model.state = GAME_STATES['COMPUTER_WIN']
                     self.show_message('Whoops! You completed a word! ({})'
-                        .format(self.model.word))
+                                      .format(self.model.word))
                     self.show_message('Computer wins!')
                     self.ui.disable_input()
                     return
@@ -57,7 +57,7 @@ class AppController:
 
         elif self.model.game_state == GAME_STATES['HUMAN_CHALLENGED']:
             move = self.ui.letter_entry.get().upper()
-            if move in self.model.word_list:
+            if move in self.model.word_list or move in SUB_LIST:
                 self.model.state = GAME_STATES['HUMAN_WIN']
                 self.show_message('You respond with {}'.format(
                     move))

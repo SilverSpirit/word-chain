@@ -22,6 +22,9 @@ GAME_STATES = {
 with open('../res/word_list.pkl', 'rb') as f:
     WORD_LIST = pickle.load(f)
 
+with open('../res/sub_list.pkl', 'rb') as f1:
+    SUB_LIST = pickle.load(f1)
+
 CHALLENGE_CODE = '?!!'
 
 ICON = b'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAAAXNSR0IArs4c6Q' \
