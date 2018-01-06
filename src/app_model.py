@@ -10,7 +10,6 @@ class AppModel:
         self.game_state = None
         self.word = ''
         self.word_list = WORD_LIST[:]  # copy
-        self.comp_player = ComputerPlayer()
         self.protocol = [CHALLENGE_CODE]
 
     def play_turn(self, p_choice):
@@ -24,7 +23,7 @@ class AppModel:
         else:  # Computer
             self.game_state = GAME_STATES['COMPUTER_PLAY']
             self.controller.show_message("Computer's turn...")
-            move = self.comp_player.get_action(self.word, self.word_list)
+            move = self.get_action(self.word)
             if move not in self.protocol:
                 self.word += move
                 self.controller.reshow_word(self.word)
@@ -41,33 +40,26 @@ class AppModel:
 
     def challenge_computer(self):
         self.controller.show_message('You challenge the computer!')
-        return self.comp_player.get_action(CHALLENGE_CODE, self.word_list)
-        # game over here
+        return self.get_action(CHALLENGE_CODE)
 
     def update_wordlist(self):
         self.word_list = [wrd for wrd in self.word_list if wrd[:len(
             self.word)] == self.word]
 
-
-
-class ComputerPlayer:  # separate for convenience
-    def __init__(self):
-        pass  # nothing for now
-
-    def get_action(self, word, word_list):
+    def get_action(self, word):
         # will never complete a word!
         # to add: bluffing
         if word == '':
-            return random.choice(word_list)[0].upper()
+            return random.choice(self.word_list)[0].upper()
 
         if word == CHALLENGE_CODE:
-            if len(word_list) > 0:
-                return random.choice(word_list)
+            if len(self.word_list) > 0:
+                return random.choice(self.word_list)
             else:
                 return ''
 
         # roll a dice to challenge straight off
-        upper_lim = len(word_list)
+        upper_lim = len(self.word_list)
         if upper_lim < 2:
             upper_lim = 2
         dice_roll = random.choice(range(1, upper_lim))
@@ -76,7 +68,7 @@ class ComputerPlayer:  # separate for convenience
             return CHALLENGE_CODE
 
         # else return a letter from the existing words or challenge
-        sub_list = [wrd for wrd in word_list if len(wrd) > len(word) + 1]
+        sub_list = [wrd for wrd in self.word_list if len(wrd) > len(word) + 1]
         if sub_list == []:
             return CHALLENGE_CODE  # won't complete, challenge instead
         else:

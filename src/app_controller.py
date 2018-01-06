@@ -81,8 +81,8 @@ class AppController:
                     move))
                 self.show_message('Computer wins!')
             else:
-                self.model.state = GAME_STATES['HUMAN_WIN_WIN']
+                self.model.state = GAME_STATES['HUMAN_WIN']
                 self.show_message('Computer fails to come up with a '
-                                  'word')
+                                  'word!')
                 self.show_message('You win!')
             self.ui.disable_input()
