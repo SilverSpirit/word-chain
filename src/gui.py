@@ -2,6 +2,7 @@ from app_utils import APP_TITLE
 from app_utils import GUI_STRINGS
 from app_utils import ICON
 
+
 import dialog
 
 try:
@@ -35,7 +36,8 @@ class Gui:
         PlayerDialog(self.dialog_frame, self)
 
     def on_closing(self):
-        self.controller.play_again = messagebox.askyesno('Play again?')
+        self.controller.play_again = messagebox.askquestion(
+            title = APP_TITLE, message = 'Play again?')
         self.root.destroy()
 
     def setup(self):
@@ -53,10 +55,14 @@ class Gui:
         self.letter_entry = tk.Entry(width=35)
         self.letter_entry.grid(sticky=tk.EW, padx=(5, 0), pady=2)
         self.play_letter_button = tk.Button(text=
-                                            GUI_STRINGS['PLAY_LETTER_BUTTON'])
+                                            GUI_STRINGS['PLAY_LETTER_BUTTON'],
+                                            command=
+                                            self.controller.on_play_clicked)
         self.play_letter_button.grid(sticky=tk.EW, row=4, column=1, pady=2)
         self.challenge_button = tk.Button(text=
-                                          GUI_STRINGS['CHALLENGE_BUTTON'])
+                                          GUI_STRINGS['CHALLENGE_BUTTON'],
+                                          command =
+                                          self.controller.on_challenge_clicked)
         self.challenge_button.grid(sticky=tk.EW, row=4, column=2, pady=2)
 
     def disable_input(self):

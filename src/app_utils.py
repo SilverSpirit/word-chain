@@ -16,10 +16,13 @@ GAME_STATES = {
     'HUMAN_CHALLENGED': 2,
     'COMPUTER_PLAY': 3,
     'COMPUTER_CHALLENGED': 4,
-    'GAME_OVER': 5
+    'HUMAN_WIN': 5,
+    'COMPUTER_WIN': 6
 }
 with open('../res/word_list.pkl', 'rb') as f:
     WORD_LIST = pickle.load(f)
+
+CHALLENGE_CODE = '?!!'
 
 ICON = b'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAAAXNSR0IArs4c6Q' \
        b'AAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAPcSURBVHhe' \
