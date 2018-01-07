@@ -50,6 +50,7 @@ class AppController:
                                       .format(self.model.word))
                     self.show_message('Computer wins!')
                     self.ui.disable_input()
+                    self.ui.on_closing()
                     return
                 self.model.update_wordlist()
                 self.game_state = GAME_STATES['COMPUTER_PLAY']
@@ -69,6 +70,8 @@ class AppController:
                     move))
                 self.show_message('Computer wins!')
                 self.ui.disable_input()
+            self.ui.on_closing()
+            return
         self.ui.letter_entry.delete(0, 'end')
 
     def on_challenge_clicked(self):
@@ -86,3 +89,4 @@ class AppController:
                                   'word!')
                 self.show_message('You win!')
             self.ui.disable_input()
+            self.ui.on_closing()
