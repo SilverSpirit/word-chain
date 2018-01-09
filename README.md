@@ -19,5 +19,6 @@ E.g. 2
 - You challenge the computer
 - Computer responds with WATCH and wins.
 
-Usage:
+Usage
+------
 Requires Python 3. Simply run main.py
