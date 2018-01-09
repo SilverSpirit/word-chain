@@ -20,5 +20,5 @@ E.g. 2
 - Computer responds with WATCH and wins.
 
 Usage
-------
+******
 Requires Python 3. Simply run main.py
