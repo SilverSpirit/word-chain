@@ -1,6 +1,5 @@
 Wordchain <img src="https://github.com/SilverSpirit/word-chain/blob/master/res/logo.png" height="24" width="24">
-----------
-
+==========
 A simple vocabulary building game!
 The aim of the game is to chain together as long a word as possible without completing it. Words of length four or higher from the standard list of Scrabble words are valid. You lose if you complete a word.
 
@@ -20,5 +19,5 @@ E.g. 2
 - Computer responds with WATCH and wins.
 
 Usage
-******
+------
 Requires Python 3. Simply run main.py
