@@ -59,6 +59,8 @@ class AppController:
         elif self.model.game_state == GAME_STATES['HUMAN_CHALLENGED']:
             move = self.ui.letter_entry.get().upper()
             if move in self.model.word_list or move in SUB_LIST:
+                self.model.word = move
+                self.reshow_word(move)
                 self.model.state = GAME_STATES['HUMAN_WIN']
                 self.show_message('You respond with {}'.format(
                     move))
@@ -66,7 +68,7 @@ class AppController:
                 self.ui.disable_input()
             else:
                 self.model.state = GAME_STATES['COMPUTER_WIN']
-                self.show_message('Whoops! {} is not a valid word'.format(
+                self.show_message('Whoops! "{}" is not a valid word'.format(
                     move))
                 self.show_message('Computer wins!')
                 self.ui.disable_input()
@@ -79,6 +81,8 @@ class AppController:
             self.model.game_state = GAME_STATES['COMPUTER_CHALLENGED']
             move = self.model.challenge_computer()
             if move != '':
+                self.model.word = move
+                self.reshow_word(move)
                 self.model.state = GAME_STATES['COMPUTER_WIN']
                 self.show_message('Computer responds with {}'.format(
                     move))

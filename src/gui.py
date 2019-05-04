@@ -18,9 +18,10 @@ class Gui:
         self.controller = controller
         self.root = root
         self.choice = None
-        root.protocol("WM_DELETE_WINDOW", self.on_closing)
+        root.protocol('WM_DELETE_WINDOW', self.on_closing)
         img = tk.PhotoImage(data=ICON)
         self.root.tk.call('wm', 'iconphoto', self.root._w, img)
+        root.bind('<Escape>', self.on_closing)
 
         self.header_label = None
         self.word_entry = None
@@ -34,7 +35,7 @@ class Gui:
 
         PlayerDialog(self.dialog_frame, self)
 
-    def on_closing(self):
+    def on_closing(self, event=None):
         self.controller.play_again = messagebox.askquestion(
             title=APP_TITLE, message='Play again?')
         self.root.destroy()
@@ -105,6 +106,7 @@ class PlayerDialog(dialog.Dialog):
         self.random_check = tk.Checkbutton(master, text='Random',
                                            variable=self.choice, onvalue=2)
         self.random_check.grid(sticky=tk.W)
+        self.focus_force()
 
     def apply(self):
         self.game_gui.choice = self.choice.get()
